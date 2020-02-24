@@ -94,6 +94,7 @@ replicaCount: 1
 
 image:
   repository: nginx
+  tag: stable
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []
@@ -251,7 +252,7 @@ spec:
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image.repository }}:{{ .Chart.AppVersion }}"
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
